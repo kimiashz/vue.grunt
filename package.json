@@ -1,0 +1,22 @@
+{
+  "name": "vuetodo",
+  "version": "1.0.0",
+  "description": "\"kimia\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kimiashz/VueTodo.git"
+  },
+  "author": "kimia",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kimiashz/VueTodo/issues"
+  },
+  "homepage": "https://github.com/kimiashz/VueTodo#readme",
+  "dependencies": {
+    "vue": "^2.6.10"
+  }
+}
