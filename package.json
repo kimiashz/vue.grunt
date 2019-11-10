@@ -1,8 +1,7 @@
 {
   "name": "vuetodo",
   "version": "1.0.0",
-  "description": "\"kimia\"",
-  "main": "index.js",
+  "description": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -17,7 +16,6 @@
   },
   "homepage": "https://github.com/kimiashz/VueTodo#readme",
   "dependencies": {
-    "express": "^4.17.1",
     "vue": "^2.6.10"
   },
   "devDependencies": {
@@ -28,6 +26,7 @@
     "grunt-contrib-watch": "^1.1.0",
     "grunt-include-source": "^1.1.0",
     "grunt-replace": "^1.0.1",
-    "grunt-sass": "^3.1.0"
+    "grunt-sass": "^3.1.0",
+    "node-sass": "^4.13.0"
   }
 }

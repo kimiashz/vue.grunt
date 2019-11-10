@@ -1,12 +1,16 @@
+var sass = require('node-sass');
 module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         concat:{
             options:{
-                separator: ';'
+                separator: '\n/******* KiMiA Js file seperator *******/\n'
             },
-            dist: {
-                src: ['src/**/*.js'],
+            js: {
+                src: [
+                    'node_modules/vue/dist/vue.js',
+                    'app/js/*.js'
+                ],
                 dest: 'dist/<%= pkg.name %>.js'
             }
         },
@@ -16,18 +20,14 @@ module.exports = function(grunt) {
             },
             dist:{
                 files: {
-                    'dist/<%= pkg.name %>.min.js': ['<%= concat.dist.dest %>']
+                    'dist/<%= pkg.name %>.min.js': ['<%= concat.js.dest %>']
                 }
             }
-        },
-        qunit: {
-            files: ['test/**/*.html']
         },
         jshint: {
             files: [
                 'Gruntfile.js',
-                'src/**/*.js',
-                'test/**/*.js'
+                'app/js/*.js'
             ],
             options: {
                 globals: {
@@ -37,19 +37,34 @@ module.exports = function(grunt) {
                 }
             }
         },
+        sass:{
+            dist:{
+                options:{
+                    implementation: sass,
+                    sourcemap: 'none'
+                },
+                files:{
+                    'dist/<%= pkg.name %>.css': 'app/sass/main.sass'
+                }
+            }
+        },
         watch: {
-            files: ['<%= jshint.files %>'],
-            tasks: ['jshint', 'qunit']
+            sass:   {
+                files: ['<%= sass.dist.files %>'],
+                tasks: ['sass']
+            },
+            js:{
+                files: ['<%= jshint.files %>'],
+                tasks: ['jshint']
+            }
         }
     });
 
+    grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-sass');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-jshint');
-    grunt.loadNpmTasks('grunt-contrib-qunit');
     grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-contrib-concat');
 
-    grunt.registerTask('test', ['jshint', 'qunit']);
-
-    grunt.registerTask('default', ['jshint', 'qunit', 'concat', 'uglify']);
+    grunt.registerTask('do', ['jshint', 'concat', 'sass', 'uglify']);
 };
