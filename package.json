@@ -16,17 +16,21 @@
   },
   "homepage": "https://github.com/kimiashz/VueTodo#readme",
   "dependencies": {
+    "jquery": "^3.4.1",
     "vue": "^2.6.10"
   },
   "devDependencies": {
     "grunt": "^1.0.4",
     "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-connect": "^2.1.0",
     "grunt-contrib-jshint": "^2.1.0",
     "grunt-contrib-uglify": "^4.0.1",
     "grunt-contrib-watch": "^1.1.0",
-    "grunt-include-source": "^1.1.0",
     "grunt-replace": "^1.0.1",
     "grunt-sass": "^3.1.0",
     "node-sass": "^4.13.0"
+  },
+  "scripts": {
+    "start": "grunt start"
   }
 }

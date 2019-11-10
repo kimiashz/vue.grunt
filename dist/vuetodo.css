@@ -1,4 +1,11 @@
 /* Main */
+body {
+  margin: 0;
+  padding: 0; }
+
+div {
+  display: block; }
+
 ol {
   background: #c6538c;
   padding: 5px; }

@@ -2,6 +2,7 @@ var sass = require('node-sass');
 module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
+
         concat:{
             options:{
                 separator: '\n/******* KiMiA Js file seperator *******/\n'
@@ -50,21 +51,38 @@ module.exports = function(grunt) {
         },
         watch: {
             sass:   {
-                files: ['<%= sass.dist.files %>'],
+                files: ['app/sass/**.sass'],
                 tasks: ['sass']
             },
             js:{
-                files: ['<%= jshint.files %>'],
-                tasks: ['jshint']
+                files: ['app/js/*.js'],
+                tasks: ['js']
+            },
+            gruntFile:{
+                files: ['Gruntfile.js'],
+                tasks: ['do']
+            }
+        },
+        // Connect to local server
+        connect: {
+            server: {
+                options: {
+                    base:       './',
+                    port:       5008,
+                    debug:      true,
+                    open:       true
+                }
             }
         }
     });
 
-    grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-sass');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-contrib-connect');
 
-    grunt.registerTask('do', ['jshint', 'concat', 'sass', 'uglify']);
+    grunt.registerTask('js', ['concat','jshint','uglify']);
+    grunt.registerTask('start', ['js','sass','connect','watch']);
 };
